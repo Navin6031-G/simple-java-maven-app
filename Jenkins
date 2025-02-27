@@ -2,24 +2,30 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven 3'  // Name defined in Jenkins Global Tool Configuration
+        maven 'Maven 3'  // Ensure Maven is configured in Jenkins Global Tool Configuration
     }
 
     stages {
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main', url:'https://github.com/Navin6031-G/simple-java-maven-app.git'
+            }
+        }
+
         stage('Clean') {
             steps {
-                // Run Maven clean task to clean up the project
                 echo 'Running Maven clean...'
                 sh 'mvn clean'
             }
         }
     }
+
     post {
         success {
-            echo 'Build, Test, and Package were successful!'
+            echo '✅ Build Successful! Application is ready.'
         }
         failure {
-            echo 'Build failed. Please check the logs.'
-        }
-    }
+            echo '❌ Build Failed! Check logs.'
+        }
+    }
 }
