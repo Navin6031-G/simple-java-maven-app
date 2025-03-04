@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url:'https://github.com/Navin6031-G/simple-java-maven-app.git'
+                git branch: 'master', url:'https://github.com/Navin6031-G/simple-java-maven-app.git'
             }
         }
 
